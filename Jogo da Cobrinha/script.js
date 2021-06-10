@@ -1,21 +1,29 @@
 let canvas = document.getElementById("snake");
 let contex = canvas.getContext("2d");
+let pontosTela = document.querySelector('.pontuacao');
 let box = 32;
 let snake = [];
+let pontos = 0;
+
 snake[0] = {
     x: 8 * box,
     y: 8 * box
 }
 let direction = "rigth";
+
 let food = {
     x: Math.floor(Math.random()* 15 + 1) * box,
     y: Math.floor(Math.random() * 15 + 1) * box
 }
 
-
 function criarBG() {
     contex.fillStyle = "lightgreen";
     contex.fillRect(0, 0, 16 * box, 16 * box);
+}
+
+function placar() {
+	pontos++;
+	pontosTela.innerHTML = pontos;
 }
 
 function criarCobrinha() {
@@ -71,6 +79,7 @@ function iniciarJogo(){
     else {
         food.x = Math.floor(Math.random()* 15 + 1) * box;
         food.y = Math.floor(Math.random() * 15 + 1) * box;
+        placar();
     }
     
     let newHead = {
